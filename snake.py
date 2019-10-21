@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 
 #arbritary screen size and setup 
-size = (2255, 1360)
+size = (600, 800)
 
 screen = pygame.display.set_mode(size)
 grid_color = (192,192,192)
