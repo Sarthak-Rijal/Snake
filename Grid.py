@@ -13,7 +13,6 @@ class Grid(object):
         self.column = column
         self.color = color
 
-    # need to have a coordinate system for the gird. 
 
     def make_grid(self):
         
@@ -22,14 +21,19 @@ class Grid(object):
         x = 0
         y = 0
         
-        for srowLines in range(self.row):
+        for rowLines in range(self.row):
             x = x + spacing[0]
-            pygame.draw.line(self.screen, self.color, (x,0),(x,self.size[0]))
+            pygame.draw.line(self.screen, self.color, (x,0),(x,self.size[1]))
 
         for columnLines in range(self.column):
             y = y + spacing[1]
-            pygame.draw.line(self.screen, self.color, (0,y),(self.size[1], y))
+            pygame.draw.line(self.screen, self.color, (0,y),(self.size[0], y))
 
+
+
+   
+    #can we generalize grid even further. IE just need to put the screen and it will determine
+                                            #the optimum column by itself. 
 
 
 

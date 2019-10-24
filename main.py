@@ -1,24 +1,26 @@
 import pygame
 from Grid import *
+from Snake import *
 import sys
 
 pygame.init()
 
 #arbritary screen size and setup 
-size = (600, 600)
+size = (1600, 800)
 snake_pos = [size[0]/2 -20,size[1]/2 - 20]
-snake_size = 40
+snake_size = 10
 screen = pygame.display.set_mode(size)
 
 grid_color = (192,192,192)
-row = 15
-column = 15
+row = 160
+column = 80
 RED = (255, 0, 0)
 #FPS
 clock = pygame.time.Clock()
 FPS = 30
 
 gameGrid = Grid(screen, size, row, column)
+snake =  Snake(screen, snake_size)
 
 def drawsnake():
     pygame.draw.rect(screen, RED,(snake_pos[0],snake_pos[1],snake_size,snake_size))
@@ -59,10 +61,11 @@ def play():
     while not game_over:
         screencolor()
         #event listner
-        drawsnake()
-        a,b = check_control(snake_pos[0], snake_pos[1])
-        snake_pos[0] = a
-        snake_pos[1] = b
+        #drawsnake()
+        #a,b = check_control(snake_pos[0], snake_pos[1])
+        #snake_pos[0] = a
+        #snake_pos[1] = b
+        snake.move()
         pygame.display.update()
         clock.tick(FPS)
 
