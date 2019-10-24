@@ -7,7 +7,7 @@ pygame.init()
 # snake class
 class Snake(object): 
     # Function to initialise the node object 
-    def __init__(self, screen, size, speed = 20, direction = (1, 0), color = (255, 0, 0), snake = [[0,0]]):
+    def __init__(self, screen, size, speed = 10, direction = (1, 0), color = (255, 0, 0), snake = [[0,0]]):
         self.screen = screen
         self.size = size
         self.direction = direction
