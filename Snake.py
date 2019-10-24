@@ -7,12 +7,13 @@ pygame.init()
 # snake class
 class Snake(object): 
     # Function to initialise the node object 
-    def __init__(self, screen, size = 40, direction = (1, 0), color = (255, 0, 0), snake = [[0,0]]):
+    def __init__(self, screen, size, speed = 20, direction = (1, 0), color = (255, 0, 0), snake = [[0,0]]):
         self.screen = screen
         self.size = size
         self.direction = direction
         self.color = color
         self.snake = snake
+        self.speed = speed
 
     #if eaten it sould increase in size
     #def increaseSize():
@@ -57,8 +58,8 @@ class Snake(object):
     def move(self):
 
         for position in self.snake:
-            position[0] += self.size * self.direction[0]
-            position[1] += self.size * self.direction[1]
+            position[0] += self.speed * self.direction[0]
+            position[1] += self.speed * self.direction[1]
             self.setDirection()
             
 

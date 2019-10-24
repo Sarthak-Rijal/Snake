@@ -8,12 +8,12 @@ pygame.init()
 #arbritary screen size and setup 
 size = (1600, 800)
 snake_pos = [size[0]/2 -20,size[1]/2 - 20]
-snake_size = 10
+snake_size = 20
 screen = pygame.display.set_mode(size)
 
 grid_color = (192,192,192)
-row = 160
-column = 80
+row = 80
+column = 40
 RED = (255, 0, 0)
 #FPS
 clock = pygame.time.Clock()
