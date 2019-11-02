@@ -63,6 +63,17 @@ class Snake(object):
             position[0] += self.speed * self.direction[0]
             position[1] += self.speed * self.direction[1]
 
+            if (position[0] > self.grid.size[0]):
+                position[0] = 0
+            if (position[0] + self.size < 0):
+                position[0] = self.grid.size[0] - self.size
+            
+            if (position[1] > self.grid.size[1]):
+                position[1] = 0
+            if (position[1] + self.size < 0):
+                position[1] = self.grid.size[1] - self.size
+                
+
             #when the snake snaps to the grid  AND there are moves in the queue
             # move to a given legal direction
             
