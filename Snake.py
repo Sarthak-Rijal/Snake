@@ -14,7 +14,7 @@ pygame.init()
 # snake class
 class Snake(object): 
     # Function to initialise the node object 
-    def __init__(self, screen, size, grid, speed = 2, direction = (1, 0), color = (128, 128, 128), snake = [[40,80]]):
+    def __init__(self, screen, size, grid, speed = 5, direction = (1, 0), color = (128, 128, 128), snake = [[40,80]]):
         
         self.screen = screen
         self.size = size
@@ -31,12 +31,9 @@ class Snake(object):
     def getDirection(self):
         return self.direction
 
-    #if eaten it sould increase in size
-    #def increaseSize():
-     #   self.snake.appendleft()
-
-    #set direction
+    #queue future turns
     def takeInput(self):
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -53,41 +50,37 @@ class Snake(object):
 
              
 
-    def move(self):
+    def __changeDirection(self, validDirections):
 
+            if (self.inputQueue[-1] == validDirections[0] or self.inputQueue[-1] == validDirections[1]):
+                    self.direction = self.inputQueue.pop()
+            else:
+                self.inputQueue.pop()
+
+    def move(self):
+        #update snake postion
         for position in self.snake:
             position[0] += self.speed * self.direction[0]
             position[1] += self.speed * self.direction[1]
 
-            #at each line segment check if there is a legal move 
+            #when the snake snaps to the grid  AND there are moves in the queue
+            # move to a given legal direction
             
             if (position[0] % self.size == 0 and position[1] % self.size == 0 and
                 len(self.inputQueue) != 0):
 
                 if (self.getDirection() == RIGHT):
-                    if (self.inputQueue[-1] == UP or self.inputQueue[-1] == DOWN):
-                            self.direction = self.inputQueue.pop()
-                    else:
-                        self.inputQueue.pop()
+                    self.__changeDirection((UP, DOWN))
                 
                 elif (self.getDirection() == LEFT):
-                    if (self.inputQueue[-1] == UP or self.inputQueue[-1] == DOWN):
-                            self.direction = self.inputQueue.pop()
-                    else:
-                        self.inputQueue.pop()
+                    self.__changeDirection((UP, DOWN))
 
                 elif (self.getDirection() == UP):
-                    if (self.inputQueue[-1] == LEFT or self.inputQueue[-1] == RIGHT):
-                            self.direction = self.inputQueue.pop()
-                    else:
-                        self.inputQueue.pop()
+                    self.__changeDirection((RIGHT, LEFT))
 
                 elif (self.getDirection() == DOWN):
-                    if (self.inputQueue[-1] == LEFT or self.inputQueue[-1] == RIGHT):
-                            self.direction = self.inputQueue.pop()
-                    else:
-                        self.inputQueue.pop()
-                        
+                    self.__changeDirection((RIGHT, LEFT))
+
         self._draw()
 
 
