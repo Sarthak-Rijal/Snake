@@ -7,10 +7,11 @@ pygame.init()
 # snake class
 class Snake(object): 
     # Function to initialise the node object 
-    def __init__(self, screen, size, speed = 10, direction = (1, 0), color = (255, 0, 0), snake = [[0,0]]):
+    def __init__(self, screen, size, grid, speed = 10, direction = (1, 0), color = (128, 128, 128), snake = [[0,0]]):
         self.screen = screen
         self.size = size
         self.direction = direction
+        self.grid = grid
         self.color = color
         self.snake = snake
         self.speed = speed
@@ -30,14 +31,16 @@ class Snake(object):
                 if (self.direction == (-1,0)):#left
                     
                     if event.key == pygame.K_UP:
-                        self.direction = (0,-1)
+                        if (self.snake[0] % self.grid.row == 0):
+                            self.direction = (0,-1)
                     elif event.key == pygame.K_DOWN:
                         self.direction = (0,1)
 
                 elif (self.direction == (1,0)):#right
                     
                     if event.key == pygame.K_UP:
-                        self.direction = (0,-1)
+                        if (self.snake[0][0] % self.grid.row == 0):
+                            self.direction = (0,-1)
                     elif event.key == pygame.K_DOWN:
                         self.direction = (0,1)
 

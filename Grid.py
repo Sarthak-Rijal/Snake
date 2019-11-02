@@ -6,7 +6,7 @@ pygame.init()
 # snake class
 class Grid(object): 
     # Function to initialise the node object 
-    def __init__(self, screen, size, row, column, color = (192,192,192)):
+    def __init__(self, screen, size, row, column, color):
         self.screen = screen
         self.size = size
         self.row = row
@@ -28,12 +28,6 @@ class Grid(object):
         for columnLines in range(self.column):
             y = y + spacing[1]
             pygame.draw.line(self.screen, self.color, (0,y),(self.size[0], y))
-
-
-
-   
-    #can we generalize grid even further. IE just need to put the screen and it will determine
-                                            #the optimum column by itself. 
 
 
 
