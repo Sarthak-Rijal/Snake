@@ -28,26 +28,27 @@ FPS = 30
 gameGrid = Grid(screen, size, row, column, GREY)
 snake =  Snake(screen, snake_size, gameGrid)
 food = Food(screen, gameGrid)
-def drawsnake():
-    pygame.draw.rect(screen, WHITE,(snake_pos[0],snake_pos[1],snake_size,snake_size))
 
 
-def screencolor():
-    global screen
-    screen.fill(NAVY_BLUE)
-    
-    gameGrid.make_grid()
     
 
 def play():
     global screen
     
     game_over = False
+
+    gameGrid.make_grid()
+    
     while not game_over:
-        screencolor()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        gameGrid.updateGrid()
         food.drawfood()
-        snake.takeInput()
-        snake.move()
+        snake.update()
 
         pygame.display.update()
         clock.tick(FPS)
