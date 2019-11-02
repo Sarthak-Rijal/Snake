@@ -38,39 +38,16 @@ def screencolor():
     gameGrid.make_grid()
     
 
-def check_control(x,y):
-     for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-                
-            if event.type == pygame.KEYDOWN:
-                #x = snake_pos[0]
-                #y = snake_pos[1]
-                if event.key == pygame.K_LEFT:
-                    x -= snake_size
-                elif event.key == pygame.K_RIGHT:
-                    x += snake_size
-                elif event.key == pygame.K_UP:
-                    y -= snake_size
-                elif event.key == pygame.K_DOWN:
-                    y += snake_size
-     return x,y
-
-                
-
-
 def play():
     global screen
     
     game_over = False
     while not game_over:
         screencolor()
-        #event listner
-        #drawsnake()
-        #a,b = check_control(snake_pos[0], snake_pos[1])
-        #snake_pos[0] = a
-        #snake_pos[1] = b
+    
+        snake.takeInput()
         snake.move()
+
         pygame.display.update()
         clock.tick(FPS)
 
