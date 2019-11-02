@@ -1,6 +1,7 @@
 import pygame
 from Grid import *
 from Snake import *
+from Food import *
 import sys
 
 pygame.init()
@@ -26,7 +27,7 @@ FPS = 30
 
 gameGrid = Grid(screen, size, row, column, GREY)
 snake =  Snake(screen, snake_size, gameGrid)
-
+food = Food(screen)
 def drawsnake():
     pygame.draw.rect(screen, WHITE,(snake_pos[0],snake_pos[1],snake_size,snake_size))
 
@@ -44,7 +45,7 @@ def play():
     game_over = False
     while not game_over:
         screencolor()
-    
+        food.drawfood()
         snake.takeInput()
         snake.move()
 
