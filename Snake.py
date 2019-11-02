@@ -14,7 +14,7 @@ pygame.init()
 # snake class
 class Snake(object): 
     # Function to initialise the node object 
-    def __init__(self, screen, size, grid, speed = 5, direction = (1, 0), color = (128, 128, 128), snake = [[40,80]]):
+    def __init__(self, screen, size, grid, speed = 5, direction = (1, 0), color = (128, 128, 128), snake = [[40,80],[20,80]]):
         
         self.screen = screen
         self.size = size
