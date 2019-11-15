@@ -28,6 +28,7 @@ class Snake(object):
 
         self.inputQueue = deque()
 
+
     def getDirection(self):
         return self.direction
 
@@ -62,6 +63,8 @@ class Snake(object):
         for position in self.snake:
             position[0] += self.speed * self.direction[0]
             position[1] += self.speed * self.direction[1]
+
+            print(position[0], position[1])
 
             if (position[0] > self.grid.size[0]):
                 position[0] = 0
