@@ -1,6 +1,7 @@
 import pygame
 from Grid import *
 from Snake import *
+from Block import *
 import sys
 
 pygame.init()
@@ -25,7 +26,7 @@ clock = pygame.time.Clock()
 FPS = 30
 
 gameGrid = Grid(screen, size, row, column, GREY)
-snake =  Snake(screen, snake_size, gameGrid)
+snake =  Block(screen, snake_size, gameGrid)
 
 def drawsnake():
     pygame.draw.rect(screen, WHITE,(snake_pos[0],snake_pos[1],snake_size,snake_size))
@@ -43,10 +44,15 @@ def play():
     
     game_over = False
     while not game_over:
+
+        i = pygame.time.get_ticks()
+        # print(i)
+
         screencolor()
     
-        snake.takeInput()
-        snake.move()
+
+        snake.takeInput()        
+        snake.move(i)
 
         pygame.display.update()
         clock.tick(FPS)
